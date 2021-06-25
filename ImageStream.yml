@@ -1,0 +1,21 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: simple-webapp-color-git
+  namespace: vnytech3-dev
+  labels:
+    app: simple-webapp-color-git
+    app.kubernetes.io/component: simple-webapp-color-git
+    app.kubernetes.io/instance: simple-webapp-color-git
+    app.kubernetes.io/name: python
+    app.kubernetes.io/part-of: simple-webapp-color-git-app
+    app.openshift.io/runtime: python
+    app.openshift.io/runtime-version: 3.8-ubi7
+spec:
+  lookupPolicy:
+    local: false
+status:
+  dockerImageRepository: >-
+    image-registry.openshift-image-registry.svc:5000/vnytech3-dev/simple-webapp-color-git
+  publicDockerImageRepository: >-
+    default-route-openshift-image-registry.apps.sandbox-m2.ll9k.p1.openshiftapps.com/vnytech3-dev/simple-webapp-color-git

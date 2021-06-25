@@ -1,0 +1,42 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: simple-webapp-color-git
+  namespace: vnytech3-dev
+  labels:
+    app: simple-webapp-color-git
+    app.kubernetes.io/component: simple-webapp-color-git
+    app.kubernetes.io/instance: simple-webapp-color-git
+    app.kubernetes.io/name: python
+    app.kubernetes.io/part-of: simple-webapp-color-git-app
+    app.openshift.io/runtime: python
+    app.openshift.io/runtime-version: 3.8-ubi7
+spec:
+  source:
+    git:
+      ref: master
+      uri: 'https://github.com/vnytech3/openshift-python-loadbalance-multi-color-webapp.git'
+    contextDir: /
+    type: Git
+  
+  strategy:
+    type: Source
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        name: 'python:3.8-ubi7'
+        namespace: openshift
+      env: []
+  
+  triggers:
+    - type: ImageChange
+      imageChange: {}
+    - type: ConfigChange
+
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'simple-webapp-color-git:latest'
+  resources: {}
+  successfulBuildsHistoryLimit: 5
+  failedBuildsHistoryLimit: 5
