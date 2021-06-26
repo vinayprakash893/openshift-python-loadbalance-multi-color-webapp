@@ -1,9 +1,9 @@
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-    name: simple-webapp-color-git
-    namespace: vnytech3-dev
-    labels:
+  name: simple-webapp-color-git
+  namespace: vnytech3-dev
+  labels:
     app: simple-webapp-color-git
     app.kubernetes.io/component: simple-webapp-color-git
     app.kubernetes.io/instance: simple-webapp-color-git
@@ -12,21 +12,21 @@ metadata:
     app.openshift.io/runtime: python
     app.openshift.io/runtime-version: 3.8-ubi7
 spec:
-    host: #www.hostname.com ##Main HOST
-    path: #/
-    to:
+  host: #www.hostname.com ##Main HOST
+  path: #/
+  to:
     kind: Service
     name: simple-webapp-color-git
     weight: 100
-    port:
+  port:
     targetPort: 8080-tcp
-    wildcardPolicy: None
+  wildcardPolicy: None
 status:
-    ingress:
+  ingress:
     - host: #www.hostname.com ##external host
-        routerName: default
-        conditions:
-        - type: Admitted 
-            status: 'True'
-        wildcardPolicy: None
-        routerCanonicalHostname: #apps.sandbox-m2.ll9k.p1.openshiftapps.com  ##internal route
+      routerName: default
+      conditions:
+        - type: Admitted
+          status: 'True'
+      wildcardPolicy: None
+      routerCanonicalHostname: #apps.sandbox-m2.ll9k.p1.openshiftapps.com  ##internal route
