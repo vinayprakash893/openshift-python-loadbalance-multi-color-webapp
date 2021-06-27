@@ -2,7 +2,6 @@ apiVersion: image.openshift.io/v1
 kind: ImageStream
 metadata:
   name: simple-webapp-color-git
-  namespace: vnytech3-dev
   labels:
     app: simple-webapp-color-git
     app.kubernetes.io/component: simple-webapp-color-git

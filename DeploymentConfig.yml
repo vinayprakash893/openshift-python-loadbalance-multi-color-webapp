@@ -1,41 +1,30 @@
-apiVersion: apps.openshift.io/v1
 kind: DeploymentConfig
+apiVersion: apps.openshift.io/v1
 metadata:
   name: simple-webapp-color-git
-  namespace: vnytech3-dev
   labels:
     app: simple-webapp-color-git
-    app.kubernetes.io/component: simple-webapp-color-git
-    app.kubernetes.io/instance: simple-webapp-color-git
-    app.kubernetes.io/name: python
-    app.kubernetes.io/part-of: simple-webapp-color-git-app
-    app.openshift.io/runtime: python
-    app.openshift.io/runtime-version: 3.8-ubi7
 spec:
+  triggers:
+  - type: ConfigChange 
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+        - simple-webapp-color-git
+      from:
+        kind: ImageStreamTag
+        name: simple-webapp-color-git:latest
+    type: ImageChange
+  replicas: 1
   selector:
     app: simple-webapp-color-git
-    deploymentconfig: simple-webapp-color-git
-  replicas: 1
   template:
     metadata:
       labels:
         app: simple-webapp-color-git
-        deploymentconfig: simple-webapp-color-git
     spec:
-      triggers:
-        image.openshift.io/triggers: |-
-          [
-            {
-              "from": {
-                "kind": "ImageStreamTag",
-                "name": "openshift/hello-openshift:latest"
-              },
-              "fieldPath": "spec.template.spec.containers[0].image"
-            }
-          ]
       containers:
         - name: simple-webapp-color-git
-          image: image-registry.openshift-image-registry.svc:5000/vnytech3-dev/simple-webapp-color-git
           ports:
             - containerPort: 8080
               protocol: TCP
