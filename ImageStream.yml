@@ -13,8 +13,8 @@ metadata:
 spec:
   lookupPolicy:
     local: false
-status:
-  dockerImageRepository: >-
-    image-registry.openshift-image-registry.svc:5000/vnytech3-dev/simple-webapp-color-git
-  publicDockerImageRepository: >-
-    default-route-openshift-image-registry.apps.sandbox-m2.ll9k.p1.openshiftapps.com/vnytech3-dev/simple-webapp-color-git
+#status:
+#  dockerImageRepository: >-
+#    image-registry.openshift-image-registry.svc:5000/vnytech3-dev/simple-webapp-color-git
+#  publicDockerImageRepository: >-
+#    default-route-openshift-image-registry.apps.sandbox-m2.ll9k.p1.openshiftapps.com/vnytech3-dev/simple-webapp-color-git
